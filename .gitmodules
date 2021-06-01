@@ -383,3 +383,10 @@
 	branch = master
 	upstreamurl = git@bitbucket.org:einsteintoolkit/einsteinexamples.git
 	upstreamtype = git
+[submodule "repos/Gravitational_Waveform_Extractor"]
+	path = repos/Gravitational_Waveform_Extractor
+	url = https://git.ncsa.illinois.edu/elihu/Gravitational_Waveform_Extractor.git
+	revision = master
+	branch = master
+	upstreamurl = git@git.ncsa.illinois.edu:elihu/Gravitational_Waveform_Extractor.git
+	upstreamtype = git
