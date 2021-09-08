@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 
 awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
   cd $m
