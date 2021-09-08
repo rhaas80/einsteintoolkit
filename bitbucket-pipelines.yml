@@ -3,7 +3,7 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your
 # build environment.
-image: atlassian/default-image:2
+image: bitnami/git:latest
 
 pipelines:
   custom:
