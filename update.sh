@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git submodule update --init --recursive --depth 1
+git submodule update --init --recursive --depth 1 --jobs 8
 
 awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
   (
