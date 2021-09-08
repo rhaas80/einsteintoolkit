@@ -3,11 +3,14 @@
 git submodule update --init --recursive --depth 1
 
 awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
+  (
   cd $m
-  pwd
   git fetch
   git checkout origin/$b
-  cd - >/dev/null
+  ) &
+done
+wait
+awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
   git add $m
 done
 
