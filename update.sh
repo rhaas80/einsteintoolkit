@@ -2,22 +2,20 @@
 
 git submodule update --init --recursive --depth 1 --jobs 8
 
+TOPLEVEL=$PWD
 awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
   (
   cd $m
   git fetch
-  git checkout origin/$b
+  git rev-parse origin/$b >$TOPLEVEL/.git/modules/$m/HEAD
   ) &
 done
 wait
-awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
-  git add $m
-done
 
 msg="updated submodules
 
-$(git diff --submodule=log --cached)
+$(git diff --submodule=log)
 "
-if git commit -m "$msg" ; then
+if git commit -a -m "$msg" ; then
   git push origin HEAD:master
 fi
