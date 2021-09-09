@@ -21,5 +21,5 @@ updated submodules
 
 $(git diff --cached --submodule=log)
 EOF
-  git push origin HEAD:master
+  git push
 fi
