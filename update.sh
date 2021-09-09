@@ -15,10 +15,11 @@ for m in $(git diff --cached --name-only) ; do  (
   git fetch --unshallow
 ) done
 
-msg="updated submodules
+if ! git diff --cached --exit-code --quiet ; then
+  git commit -q -F - <<EOF
+updated submodules
 
 $(git diff --cached --submodule=log)
-"
-if git commit -m "$msg" ; then
+EOF
   git push origin HEAD:master
 fi
