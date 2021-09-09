@@ -1,23 +1,24 @@
 #!/bin/bash
 
-git submodule update --init --recursive --depth 1 --jobs 8
-set -e
+git submodule init
+awk '/^[[]submodule "/{print "update = !git reset --quiet --mixed"} {print}' .git/config >.git/config.tmp
+mv .git/config.tmp .git/config
+# --init required to due Kranc containing another submodule
+git submodule update --init --recursive --remote --no-fetch --depth 1 --jobs 4
+git add --all
 
-TOPLEVEL=$PWD
-awk -vFS='[][ \t"=]+' '/path/{sm=$3} /branch/{b=$3} /upstreamtype/{print sm,b}' .gitmodules | while read m b ; do
-  (
+# need commits to produce list of changes
+# unfortunately git fetch --shallow-exclude=refspec does not work and fails
+# with an error message
+for m in $(git diff --cached --name-only) ; do  (
   cd $m
-  git fetch
-  echo git rev-parse origin/$b \>$TOPLEVEL/.git/modules/$m/HEAD
-  ) &
-  wait
-done
-wait
+  git fetch --unshallow
+) done
 
 msg="updated submodules
 
-$(git diff --submodule=log)
+$(git diff --cached --submodule=log)
 "
-if git commit -a -m "$msg" ; then
+if git commit -m "$msg" ; then
   git push origin HEAD:master
 fi
