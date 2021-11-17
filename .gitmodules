@@ -390,3 +390,7 @@
 	upstreamtype = git
 	revision = master
 	branch = master
+[submodule "repos/RePrimAnd"]
+	path = repos/RePrimAnd
+	url = https://github.com/wokast/RePrimAnd.git
+	branch = public
