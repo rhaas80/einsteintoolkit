@@ -394,3 +394,7 @@
 	path = repos/RePrimAnd
 	url = https://github.com/wokast/RePrimAnd.git
 	branch = public
+[submodule "kuibit"]
+	path = repos/kuibit
+	url = https://github.com/Sbozzolo/kuibit
+	branch = master
