@@ -293,7 +293,7 @@
 	revision = master
 	branch = master
 [submodule "utils"]
-	path = utils
+	path = repos/utilities
 	url = https://bitbucket.org/cactuscode/utilities.git
 	revision = master
 	branch = master
