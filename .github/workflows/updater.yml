@@ -24,6 +24,7 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: sh ./.github/workflows/update.sh
       - name: Trigger CI workflow
+        if: ${{env.CHANGES_MADE == 'True'}}
         uses: benc-uk/workflow-dispatch@v1
         with:
           # Name or ID of workflow to run
