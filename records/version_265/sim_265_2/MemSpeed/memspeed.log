@@ -1,0 +1,520 @@
+/home/runner/simulations/TestJob01_temp_2/output-0000/TEST/sim/MemSpeed
+Preparing:
++ set -e
++ cd output-0000-active
++ echo Checking:
+Checking:
++ pwd
+/home/runner/simulations/TestJob01_temp_2/output-0000/TEST/sim/MemSpeed/output-0000-active
++ hostname
+fv-az180-910
++ date
+Sun Jul 17 00:53:21 UTC 2022
++ echo Environment:
+Environment:
++ export CACTUS_NUM_PROCS=2
++ CACTUS_NUM_PROCS=2
++ export CACTUS_NUM_THREADS=1
++ CACTUS_NUM_THREADS=1
++ export GMON_OUT_PREFIX=gmon.out
++ GMON_OUT_PREFIX=gmon.out
++ export OMP_NUM_THREADS=1
++ OMP_NUM_THREADS=1
++ env
++ sort
++ echo Starting:
+Starting:
+++ date +%s
++ export CACTUS_STARTTIME=1658019201
++ CACTUS_STARTTIME=1658019201
++ '[' 2 = 1 ']'
++ mpirun -np 2 /home/runner/simulations/TestJob01_temp_2/SIMFACTORY/exe/cactus_sim -L 3 /home/runner/simulations/TestJob01_temp_2/output-0000/arrangements/CactusUtils/MemSpeed/test/memspeed.par
+INFO (Cactus): Increased logging level from 0 to 3
+--------------------------------------------------------------------------------
+
+       10                                  
+  1   0101       ************************  
+  01  1010 10      The Cactus Code V4.12.0    
+ 1010 1101 011      www.cactuscode.org     
+  1001 100101    ************************  
+    00010101                               
+     100011     (c) Copyright The Authors  
+      0100      GNU Licensed. No Warranty  
+      0101                                 
+--------------------------------------------------------------------------------
+
+Cactus version:    4.12.0
+Compile date:      Jul 17 2022 (00:21:56)
+Run date:          Jul 17 2022 (00:53:22+0000)
+Run host:          fv-az180-910.aibneqh1mxpuhl3tnnuy2ifbce.bx.internal.cloudapp.net (pid=106755)
+Working directory: /home/runner/simulations/TestJob01_temp_2/output-0000/TEST/sim/MemSpeed
+Executable:        /home/runner/simulations/TestJob01_temp_2/SIMFACTORY/exe/cactus_sim
+Parameter file:    /home/runner/simulations/TestJob01_temp_2/output-0000/arrangements/CactusUtils/MemSpeed/test/memspeed.par
+--------------------------------------------------------------------------------
+
+Activating thorn Cactus...Success -> active implementation Cactus
+Activation requested for 
+--->hwloc MemSpeed SystemTopology CartGrid3D CoordBase IOASCII IOUtil PUGH PUGHSlab<---
+Thorn hwloc requests automatic activation of zlib
+Thorn MemSpeed requests automatic activation of Vectors
+Thorn MemSpeed requests automatic activation of MPI
+Activating thorn CartGrid3D...Success -> active implementation grid
+Activating thorn CoordBase...Success -> active implementation CoordBase
+Activating thorn hwloc...Success -> active implementation hwloc
+Activating thorn IOASCII...Success -> active implementation IOASCII
+Activating thorn IOUtil...Success -> active implementation IO
+Activating thorn MemSpeed...Success -> active implementation MemSpeed
+Activating thorn MPI...Success -> active implementation MPI
+Activating thorn PUGH...Success -> active implementation Driver
+Activating thorn PUGHSlab...Success -> active implementation Hyperslab
+Activating thorn SystemTopology...Success -> active implementation SystemTopology
+Activating thorn Vectors...Success -> active implementation Vectors
+Activating thorn zlib...Success -> active implementation zlib
+--------------------------------------------------------------------------------
+  if (recover initial data)
+    Recover parameters
+  endif
+
+  Startup routines
+    [CCTK_STARTUP]
+      CartGrid3D::SymmetryStartup: Register GH Extension for GridSymmetry
+      CoordBase::CoordBase_Startup: Register a GH extension to store the coordinate system handles
+      GROUP hwloc_startup: hwloc startup group
+        hwloc::hwloc_version: Output hwloc version
+      SystemTopology::ST_system_topology: Output and/or modify system topology and hardware locality
+      PUGH::Driver_Startup: Startup routine
+      PUGH::PUGH_RegisterPUGHP2LRoutines: Register Physical to Logical process mapping routines
+      PUGH::PUGH_RegisterPUGHTopologyRoutines: Register topology generation routines routines
+      IOUtil::IOUtil_Startup: Startup routine
+      Vectors::Vectors_Startup: Print startup message
+      IOASCII::IOASCII_Startup: Startup routine
+
+  Startup routines which need an existing grid hierarchy
+    [CCTK_WRAGH]
+      CartGrid3D::RegisterCartGrid3DCoords: [meta] Register coordinates for the Cartesian grid
+      MemSpeed::MemSpeed_MeasureSpeed: [meta] Measure CPU, memory, cache speeds
+  Parameter checking routines
+    [CCTK_PARAMCHECK]
+      CartGrid3D::ParamCheck_CartGrid3D: Check coordinates for CartGrid3D
+      Vectors::Vectors_Test: Run correctness tests.
+
+  Initialisation
+    if (NOT (recover initial data AND recovery_mode is 'strict'))
+      [CCTK_PREREGRIDINITIAL]
+      Set up grid hierarchy
+      [CCTK_POSTREGRIDINITIAL]
+        CartGrid3D::SpatialCoordinates: Set Coordinates after regridding
+      [CCTK_BASEGRID]
+        CartGrid3D::SpatialSpacings: Set up ranges for spatial 3D Cartesian coordinates (on all grids)
+        CartGrid3D::SpatialCoordinates: Set up spatial 3D Cartesian coordinates on the GH
+        IOASCII::IOASCII_Choose1D: Choose 1D output lines
+        IOASCII::IOASCII_Choose2D: Choose 2D output planes
+        PUGH::PUGH_Report: Report on PUGH set up
+      [CCTK_INITIAL]
+      [CCTK_POSTINITIAL]
+      Initialise finer grids recursively
+      Restrict from finer grids
+      [CCTK_POSTRESTRICTINITIAL]
+      [CCTK_POSTPOSTINITIAL]
+      [CCTK_POSTSTEP]
+    endif
+    if (recover initial data)
+      [CCTK_BASEGRID]
+        CartGrid3D::SpatialSpacings: Set up ranges for spatial 3D Cartesian coordinates (on all grids)
+        CartGrid3D::SpatialCoordinates: Set up spatial 3D Cartesian coordinates on the GH
+        IOASCII::IOASCII_Choose1D: Choose 1D output lines
+        IOASCII::IOASCII_Choose2D: Choose 2D output planes
+        PUGH::PUGH_Report: Report on PUGH set up
+      [CCTK_RECOVER_VARIABLES]
+      [CCTK_POST_RECOVER_VARIABLES]
+    endif
+    if (checkpoint initial data)
+      [CCTK_CPINITIAL]
+    endif
+    if (analysis)
+      [CCTK_ANALYSIS]
+  endif
+  Output grid variables
+
+  do loop over timesteps
+    [CCTK_PREREGRID]
+    Change grid hierarchy
+    [CCTK_POSTREGRID]
+      CartGrid3D::SpatialCoordinates: Set Coordinates after regridding
+    Rotate timelevels
+    iteration = iteration+1
+    t = t+dt
+    [CCTK_PRESTEP]
+    [CCTK_EVOL]
+    Evolve finer grids recursively
+    Restrict from finer grids
+    [CCTK_POSTRESTRICT]
+    [CCTK_POSTSTEP]
+    if (checkpoint)
+      [CCTK_CHECKPOINT]
+    endif
+    if (analysis)
+      [CCTK_ANALYSIS]
+    endif
+    Output grid variables
+    enddo
+
+  Termination routines
+    [CCTK_TERMINATE]
+      PUGH::Driver_Terminate: Termination routine
+
+  Shutdown routines
+    [CCTK_SHUTDOWN]
+
+  Routines run after changing the grid hierarchy:
+    [CCTK_POSTREGRID]
+      CartGrid3D::SpatialCoordinates: Set Coordinates after regridding
+--------------------------------------------------------------------------------
+INFO (hwloc): library version 2.1.0, API version 0x20100
+INFO (SystemTopology): MPI process-to-host mapping:
+This is MPI process 0 of 2
+MPI hosts:
+  0: fv-az180-910
+This MPI process runs on host 0 of 1
+On this host, this is MPI process 0 of 2
+INFO (SystemTopology): Topology support:
+Discovery support:
+  discovery->pu                            : yes
+CPU binding support:
+  cpubind->set_thisproc_cpubind            : yes
+  cpubind->get_thisproc_cpubind            : yes
+  cpubind->set_proc_cpubind                : yes
+  cpubind->get_proc_cpubind                : yes
+  cpubind->set_thisthread_cpubind          : yes
+  cpubind->get_thisthread_cpubind          : yes
+  cpubind->set_thread_cpubind              : yes
+  cpubind->get_thread_cpubind              : yes
+  cpubind->get_thisproc_last_cpu_location  : yes
+  cpubind->get_proc_last_cpu_location      : yes
+  cpubind->get_thisthread_last_cpu_location: yes
+Memory binding support:
+  membind->set_thisproc_membind            : no
+  membind->get_thisproc_membind            : no
+  membind->set_proc_membind                : no
+  membind->get_proc_membind                : no
+  membind->set_thisthread_membind          : yes
+  membind->get_thisthread_membind          : yes
+  membind->set_area_membind                : yes
+  membind->get_area_membind                : yes
+  membind->alloc_membind                   : yes
+  membind->firsttouch_membind              : yes
+  membind->bind_membind                    : yes
+  membind->interleave_membind              : yes
+  membind->nexttouch_membind               : no
+  membind->migrate_membind                 : yes
+INFO (SystemTopology): Hardware objects in this node:
+Machine L#0: (P#0, total=7113128KB, DMIProductName="Virtual Machine", DMIProductVersion=7.0, DMIProductUUID=a510a247-adab-d74e-b26d-bf4e76d15503, DMIBoardVendor="Microsoft Corporation", DMIBoardName="Virtual Machine", DMIBoardVersion=7.0, DMIChassisVendor="Microsoft Corporation", DMIChassisType=3, DMIChassisVersion=7.0, DMIChassisAssetTag=7783-7084-3265-9085-8269-3286-77, DMIBIOSVendor="American Megatrends Inc.", DMIBIOSVersion="090008 ", DMIBIOSDate=12/07/2018, DMISysVendor="Microsoft Corporation", Backend=Linux, LinuxCgroup=/, OSName=Linux, OSRelease=5.13.0-1031-azure, OSVersion="#37~20.04.1-Ubuntu SMP Mon Jun 13 22:51:01 UTC 2022", HostName=fv-az180-910, Architecture=x86_64, hwlocVersion=2.1.0, ProcessName=cactus_sim)
+  Package L#0: (P#0, total=7113128KB, CPUVendor=GenuineIntel, CPUFamilyNumber=6, CPUModelNumber=85, CPUModel="Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz", CPUStepping=4)
+    L3Cache L#0: (P#-1, size=36608KB, linesize=64, ways=11, Inclusive=0)
+      L2Cache L#0: (P#-1, size=1024KB, linesize=64, ways=16, Inclusive=0)
+        L1dCache L#0: (P#-1, size=32KB, linesize=64, ways=8, Inclusive=0)
+          Core L#0: (P#0)
+            PU L#0: (P#0)
+      L2Cache L#1: (P#-1, size=1024KB, linesize=64, ways=16, Inclusive=0)
+        L1dCache L#1: (P#-1, size=32KB, linesize=64, ways=8, Inclusive=0)
+          Core L#1: (P#1)
+            PU L#1: (P#1)
+INFO (SystemTopology): Thread CPU bindings:
+  MPI process 0 on host 0 (process 0 of 2 on this host)
+    OpenMP thread 0: PU set L#{0} P#{0}
+  MPI process 1 on host 0 (process 1 of 2 on this host)
+    OpenMP thread 0: PU set L#{1} P#{1}
+INFO (SystemTopology): Setting thread CPU bindings:
+INFO (SystemTopology): Thread CPU bindings:
+  MPI process 0 on host 0 (process 0 of 2 on this host)
+    OpenMP thread 0: PU set L#{0} P#{0}
+  MPI process 1 on host 0 (process 1 of 2 on this host)
+    OpenMP thread 0: PU set L#{1} P#{1}
+INFO (SystemTopology): Extracting CPU/cache/memory properties:
+  There are 1 PUs per core (aka hardware SMT threads)
+  There are 1 threads per core (aka SMT threads used)
+  Cache (unknown name) has type "data" depth 1
+    size 32768 linesize 64 associativity 8 stride 4096, for 1 PUs
+  Cache (unknown name) has type "unified" depth 2
+    size 1048576 linesize 64 associativity 16 stride 65536, for 1 PUs
+  Cache (unknown name) has type "unified" depth 3
+    size 37486592 linesize 64 associativity 11 stride 3407872, for 2 PUs
+INFO (PUGH): Using physical to logical mappings: direct
+INFO (PUGH): Using topology generator: automatic
+INFO (Vectors): Using vector size 2 for architecture SSE2 (64-bit precision)
+--------------------------------------------------------------------------------
+Driver provided by PUGH
+--------------------------------------------------------------------------------
+
+INFO (PUGH): Not setting up a topology for 1 dimensions
+INFO (PUGH): Not setting up a topology for 2 dimensions
+INFO (PUGH): Setting up a topology for 3 dimensions
+INFO (IOASCII): I/O Method 'IOASCII_1D' registered: output of 1D lines of grid functions/arrays to ASCII files
+INFO (IOASCII): Periodic 1D output every 1 iterations
+INFO (IOASCII): Periodic 1D output requested for 'GRID::r'
+INFO (IOASCII): I/O Method 'IOASCII_2D' registered: output of 2D planes of grid functions/arrays to ASCII files
+INFO (IOASCII): Periodic 2D output turned off
+INFO (IOASCII): I/O Method 'IOASCII_3D' registered: output of 3D grid functions/arrays to ASCII files
+INFO (IOASCII): Periodic 3D output turned off
+INFO (MemSpeed): Measuring CPU, cache, memory, and communication speeds:
+  Single-core measurements (using 1 MPI processes with 1 OpenMP threads each):
+    CPU frequency:
+      iterations=1000000... time=0.00160427 sec
+      iterations=10000000... time=0.0169805 sec
+      iterations=100000000... time=0.166013 sec
+      iterations=700000000... time=1.15914 sec
+      iterations=700000000... time=1.17179 sec
+      result: -110.687 GHz
+    CPU floating point performance:
+      iterations=1000000... time=0.00366867 sec
+      iterations=10000000... time=0.03724 sec
+      iterations=100000000... time=0.365223 sec
+      iterations=300000000... time=1.12717 sec
+      result: 8.51689 Gflop/sec
+    CPU integer performance:
+      iterations=1000000... time=0.0022538 sec
+      iterations=10000000... time=0.0223184 sec
+      iterations=100000000... time=0.231259 sec
+      iterations=500000000... time=1.13702 sec
+      result: 7.03592 Giop/sec
+    Read latency of D1 cache (for 1 PUs) (using 1*24576 bytes):
+      iterations=1000... time=0.000161507 sec
+      iterations=10000... time=0.00160507 sec
+      iterations=100000... time=0.0165265 sec
+      iterations=1000000... time=0.163615 sec
+      iterations=7000000... time=1.16011 sec
+      result: 1.6573 nsec
+    Read latency of L2 cache (for 1 PUs) (using 1*786432 bytes):
+      iterations=1000... time=0.00124886 sec
+      iterations=10000... time=0.00767315 sec
+      iterations=100000... time=0.0858545 sec
+      iterations=1000000... time=0.805572 sec
+      iterations=2000000... time=1.57571 sec
+      result: 7.87857 nsec
+    Read latency of L3 cache (for 2 PUs) (using 1*28114944 bytes):
+      [skipped -- avoiding large-memory benchmarks]
+    Read bandwidth of D1 cache (for 1 PUs) (using 1*24576 bytes):
+      iterations=1... time=9e-07 sec
+      iterations=10... time=4.2e-06 sec
+      iterations=100... time=5.0702e-05 sec
+      iterations=1000... time=0.000366316 sec
+      iterations=10000... time=0.00372707 sec
+      iterations=100000... time=0.0375805 sec
+      iterations=1000000... time=0.376248 sec
+      iterations=3000000... time=1.13712 sec
+      result: 64.8375 GByte/sec
+    Read bandwidth of L2 cache (for 1 PUs) (using 1*786432 bytes):
+      iterations=1... time=3.4201e-05 sec
+      iterations=10... time=0.000210209 sec
+      iterations=100... time=0.00193809 sec
+      iterations=1000... time=0.0201035 sec
+      iterations=10000... time=0.196857 sec
+      iterations=60000... time=1.19717 sec
+      result: 39.4147 GByte/sec
+    Read bandwidth of L3 cache (for 2 PUs) (using 1*28114944 bytes):
+      [skipped -- avoiding large-memory benchmarks]
+    Write latency of D1 cache (for 1 PUs) (using 1*24576 bytes):
+      iterations=1000... time=4.2e-06 sec
+      iterations=10000... time=3.2601e-05 sec
+      iterations=100000... time=0.000321214 sec
+      iterations=1000000... time=0.00322884 sec
+      iterations=10000000... time=0.0325753 sec
+      iterations=100000000... time=0.329103 sec
+      iterations=300000000... time=1.00516 sec
+      result: 0.418817 nsec
+    Write latency of L2 cache (for 1 PUs) (using 1*786432 bytes):
+      iterations=1000... time=3.5001e-05 sec
+      iterations=10000... time=0.000182508 sec
+      iterations=100000... time=0.00171338 sec
+      iterations=1000000... time=0.0174139 sec
+      iterations=10000000... time=0.176869 sec
+      iterations=60000000... time=1.0548 sec
+      result: 2.19749 nsec
+    Write latency of L3 cache (for 2 PUs) (using 1*28114944 bytes):
+      [skipped -- avoiding large-memory benchmarks]
+    Write bandwidth of D1 cache (for 1 PUs) (using 1*24576 bytes):
+      iterations=1... time=1.2e-06 sec
+      iterations=10... time=2.5e-06 sec
+      iterations=100... time=1.9201e-05 sec
+      iterations=1000... time=0.000186508 sec
+      iterations=10000... time=0.00185868 sec
+      iterations=100000... time=0.018826 sec
+      iterations=1000000... time=0.19922 sec
+      iterations=6000000... time=1.14829 sec
+      result: 128.413 GByte/sec
+    Write bandwidth of L2 cache (for 1 PUs) (using 1*786432 bytes):
+      iterations=1... time=3.6202e-05 sec
+      iterations=10... time=0.000341315 sec
+      iterations=100... time=0.00336915 sec
+      iterations=1000... time=0.0337678 sec
+      iterations=10000... time=0.342993 sec
+      iterations=30000... time=0.990466 sec
+      iterations=60000... time=1.86485 sec
+      result: 25.3029 GByte/sec
+    Write bandwidth of L3 cache (for 2 PUs) (using 1*28114944 bytes):
+      [skipped -- avoiding large-memory benchmarks]
+    Stencil code performance of D1 cache (for 1 PUs) (using 1*12^3 grid points, 1*27648 bytes):
+      iterations=1... time=1.8401e-05 sec
+      iterations=10... time=0.000244911 sec
+      iterations=100... time=0.00248941 sec
+      iterations=1000... time=0.0249405 sec
+      iterations=10000... time=0.250117 sec
+      iterations=40000... time=0.997512 sec
+      iterations=80000... time=2.0199 sec
+      result: 0.0684392 Gupdates/sec
+    Stencil code performance of L2 cache (for 1 PUs) (using 1*37^3 grid points, 1*810448 bytes):
+      iterations=1... time=0.00021231 sec
+      iterations=10... time=0.00196289 sec
+      iterations=100... time=0.0195468 sec
+      iterations=1000... time=0.201826 sec
+      iterations=5000... time=0.992754 sec
+      iterations=10000... time=2.05185 sec
+      result: 0.246865 Gupdates/sec
+    Stencil code performance of L3 cache (for 2 PUs) (using 1*121^3 grid points, 1*28344976 bytes):
+      iterations=1... time=0.00469041 sec
+      iterations=10... time=0.0472136 sec
+      iterations=100... time=0.490748 sec
+      iterations=200... time=1.00401 sec
+      result: 0.352898 Gupdates/sec
+  Single-node measurements (using 2 MPI processes with 1 OpenMP threads each):
+    CPU frequency:
+      iterations=1000000... time=0.00164252 sec
+      iterations=10000000... time=0.0255841 sec
+      iterations=100000000... time=0.223606 sec
+      iterations=500000000... time=1.07228 sec
+      iterations=500000000... time=1.07776 sec
+      result: -182.76 GHz
+    CPU floating point performance:
+      iterations=1000000... time=0.00364886 sec
+      iterations=10000000... time=0.045264 sec
+      iterations=100000000... time=0.485456 sec
+      iterations=200000000... time=0.947329 sec
+      iterations=400000000... time=1.948 sec
+      result: 6.57084 Gflop/sec
+    CPU integer performance:
+      iterations=1000000... time=0.00223175 sec
+      iterations=10000000... time=0.0321065 sec
+      iterations=100000000... time=0.293262 sec
+      iterations=400000000... time=1.19254 sec
+      result: 5.3667 Giop/sec
+    Read latency of D1 cache (for 1 PUs) (using 2*24576 bytes):
+      iterations=1000... time=0.000161458 sec
+      iterations=10000... time=0.00161427 sec
+      iterations=100000... time=0.0173474 sec
+      iterations=1000000... time=0.218837 sec
+      iterations=5000000... time=1.14312 sec
+      result: 2.28625 nsec
+    Read latency of L2 cache (for 1 PUs) (using 2*786432 bytes):
+      iterations=1000... time=0.00113805 sec
+      iterations=10000... time=0.0107013 sec
+      iterations=100000... time=0.1326 sec
+      iterations=800000... time=0.800243 sec
+      iterations=1600000... time=1.60378 sec
+      result: 10.0236 nsec
+    Read latency of L3 cache (for 2 PUs) (using 2*28114944 bytes):
+      [skipped -- too much memory requested]
+    Read bandwidth of D1 cache (for 1 PUs) (using 2*24576 bytes):
+      iterations=1... time=9.5e-07 sec
+      iterations=10... time=4.05e-06 sec
+      iterations=100... time=3.7001e-05 sec
+      iterations=1000... time=0.000366267 sec
+      iterations=10000... time=0.00366712 sec
+      iterations=100000... time=0.0481877 sec
+      iterations=1000000... time=0.516863 sec
+      iterations=2000000... time=0.994475 sec
+      iterations=4000000... time=1.97346 sec
+      result: 49.8131 GByte/sec
+    Read bandwidth of L2 cache (for 1 PUs) (using 2*786432 bytes):
+      iterations=1... time=3.31515e-05 sec
+      iterations=10... time=0.000202359 sec
+      iterations=100... time=0.00194514 sec
+      iterations=1000... time=0.0281382 sec
+      iterations=10000... time=0.2633 sec
+      iterations=40000... time=1.04842 sec
+      result: 30.0045 GByte/sec
+    Read bandwidth of L3 cache (for 2 PUs) (using 2*28114944 bytes):
+      [skipped -- too much memory requested]
+    Write latency of D1 cache (for 1 PUs) (using 2*24576 bytes):
+      iterations=1000... time=4.101e-06 sec
+      iterations=10000... time=3.2551e-05 sec
+      iterations=100000... time=0.000321314 sec
+      iterations=1000000... time=0.00323515 sec
+      iterations=10000000... time=0.0470039 sec
+      iterations=100000000... time=0.433483 sec
+      iterations=300000000... time=1.29107 sec
+      result: 0.537946 nsec
+    Write latency of L2 cache (for 1 PUs) (using 2*786432 bytes):
+      iterations=1000... time=3.4452e-05 sec
+      iterations=10000... time=0.000176058 sec
+      iterations=100000... time=0.00773425 sec
+      iterations=1000000... time=0.0233642 sec
+      iterations=10000000... time=0.231808 sec
+      iterations=50000000... time=1.15626 sec
+      result: 2.89065 nsec
+    Write latency of L3 cache (for 2 PUs) (using 2*28114944 bytes):
+      [skipped -- too much memory requested]
+    Write bandwidth of D1 cache (for 1 PUs) (using 2*24576 bytes):
+      iterations=1... time=7e-07 sec
+      iterations=10... time=2.3e-06 sec
+      iterations=100... time=1.8751e-05 sec
+      iterations=1000... time=0.000186509 sec
+      iterations=10000... time=0.00185428 sec
+      iterations=100000... time=0.0224902 sec
+      iterations=1000000... time=0.242997 sec
+      iterations=5000000... time=1.24751 sec
+      result: 98.5005 GByte/sec
+    Write bandwidth of L2 cache (for 1 PUs) (using 2*786432 bytes):
+      iterations=1... time=3.6501e-05 sec
+      iterations=10... time=0.000351966 sec
+      iterations=100... time=0.00341435 sec
+      iterations=1000... time=0.0486569 sec
+      iterations=10000... time=0.414265 sec
+      iterations=30000... time=1.19023 sec
+      result: 19.8222 GByte/sec
+    Write bandwidth of L3 cache (for 2 PUs) (using 2*28114944 bytes):
+      [skipped -- too much memory requested]
+    Stencil code performance of D1 cache (for 1 PUs) (using 2*9^3 grid points, 2*11664 bytes):
+      iterations=1... time=1.0601e-05 sec
+      iterations=10... time=9.3654e-05 sec
+      iterations=100... time=0.000951493 sec
+      iterations=1000... time=0.0136836 sec
+      iterations=10000... time=0.143667 sec
+      iterations=80000... time=0.999608 sec
+      iterations=160000... time=2.00272 sec
+      result: 0.0582407 Gupdates/sec
+    Stencil code performance of L2 cache (for 1 PUs) (using 2*29^3 grid points, 2*390224 bytes):
+      iterations=1... time=0.000126755 sec
+      iterations=10... time=0.00122606 sec
+      iterations=100... time=0.017777 sec
+      iterations=1000... time=0.169389 sec
+      iterations=6000... time=0.945216 sec
+      iterations=12000... time=1.89889 sec
+      result: 0.154126 Gupdates/sec
+    Stencil code performance of L3 cache (for 2 PUs) (using 1*121^3 grid points, 1*28344976 bytes):
+      [skipped -- too many MPI processes]
+  Single-node measurements:
+    MPI latency: 1300 nsec
+    MPI bandwidth: 4.48149 GByte/sec
+INFO (Vectors): Testing vectorisation... [errors may result in segfaults]
+INFO (Vectors): 375/375 tests passed 
+INFO (CartGrid3D): Grid Spacings:
+INFO (CartGrid3D): dx=>1.1111111e-01  dy=>1.1111111e-01  dz=>1.1111111e-01
+INFO (CartGrid3D): Computational Coordinates:
+INFO (CartGrid3D): x=>[-0.500, 0.500]  y=>[-0.500, 0.500]  z=>[-0.500, 0.500]
+INFO (CartGrid3D): Indices of Physical Coordinates:
+INFO (CartGrid3D): x=>[0,9]  y=>[0,9]  z=>[0,9]
+INFO (PUGH): MPI Evolution on 2 processors
+INFO (PUGH): 3-dimensional grid functions
+INFO (PUGH):   Size: 10 10 10
+INFO (PUGH):   Processor topology: 2 x 1 x 1
+INFO (PUGH):   Local load: 600   [6 x 10 x 10]
+INFO (PUGH):   Maximum load skew: 0.000000
+--------------------------------------------------------------------------------
+Done.
++ echo Stopping:
+Stopping:
++ date
+Sun Jul 17 00:54:20 UTC 2022
++ echo Done.
+Done.
+  Elapsed time: 58.7 s
