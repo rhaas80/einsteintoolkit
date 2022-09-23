@@ -208,7 +208,6 @@ def get_warning_thorns(name):
 
             # This regex search finds the pattern shown below as twoline warnings are structure in this way
             twoline= re.search("[wW]arning:.*at",line)
-
             if(inline):
 
                 trunc=line[line.find("build/")+6:-1]
